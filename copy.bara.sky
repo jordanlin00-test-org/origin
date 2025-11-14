@@ -5,7 +5,7 @@ core.workflow(
         ref = "main",
     ),
     destination = git.destination(
-        url = "https://github.com/jordanlin00-test-org/destination.git",
+        url = "git@github.com:jordanlin00-test-org/destination.git",
         push = "main",
     ),
     authoring = authoring.pass_thru("No-Reply <no-reply@github.com>"), # Retain original commit authors
