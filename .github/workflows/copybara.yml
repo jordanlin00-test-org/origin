@@ -14,7 +14,7 @@ jobs:
           access_token: ${{ secrets.GH_TOKEN }}
           ssh_key: ${{ secrets.SSH_KEY }}
           sot_repo: https://github.com/jordanlin00-test-org/origin
-          destination_repo: https://github.com/jordanlin00-test-org/destination/
+          destination_repo: git@github.com:jordanlin00-test-org/destination.git
           custom_config: copy.bara.sky
           workflow: default
           copybara_options: --force --init-history
