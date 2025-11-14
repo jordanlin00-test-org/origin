@@ -11,11 +11,11 @@ jobs:
           ssh-known-hosts: 'github.com'
           ssh-key: ${{ secrets.SSH_KEY }}
           
-      - name: Set up SSH environment for cross-repo access
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY }}
-          # This action handles starting the agent AND adding GitHub to known_hosts correctly.
+      - name: Update GitHub's Host Key
+        run: |
+          # The -H option hashes the host name, which is a good security practice.
+          # The output is appended (>>) to the known_hosts file.
+          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 
       - uses: olivr/copybara-action@v1.2.3
         with:
