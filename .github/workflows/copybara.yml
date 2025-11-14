@@ -9,6 +9,7 @@ jobs:
         with:
           fetch-depth: 0
           ssh-known-hosts: 'github.com'
+          ssh-key: ${{ secrets.SSH_KEY }}
 
       - uses: olivr/copybara-action@v1.2.3
         with:
