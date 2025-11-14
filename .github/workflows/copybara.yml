@@ -17,3 +17,4 @@ jobs:
           destination_repo: https://github.com/jordanlin00-test-org/destination/
           custom_config: copy.bara.sky
           workflow: default
+          copybara_options: --force --init-history
