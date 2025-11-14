@@ -1,1 +1,31 @@
 name: Copybara Sync
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  copybara_mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+
+      - name: Checkout Destination Repository (Optional - if needed for config)
+        run: echo "Skipping destination checkout for a simpler example."
+
+      - name: Set up Copybara Environment
+        uses: marketplace/copybara-action@v1
+ 
+      - name: Run Copybara Migration
+        run: |
+          copybara copy.bara.sky default \
+            --git-destination-url='https://${{ secrets.COPYBARA_TOKEN }}@github.com/jordanlin00-test-org/destination.git' \
+            --force
+
+      - name: Verify and Clean Up
+        run: echo "Copybara run completed."
