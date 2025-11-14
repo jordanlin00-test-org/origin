@@ -1,0 +1,15 @@
+core.workflow(
+    name = "default",
+    origin = git.origin(
+        url = "file://.",
+        ref = "main",
+    ),
+    destination = git.destination(
+        url = "https://github.com/jordanlin00-test-org/destination.git",
+        push = "main",
+    ),
+    authoring = authoring.pass_thru("No-Reply <no-reply@github.com>"), # Retain original commit authors
+    migrate_noop_changes = True,
+    origin_files = glob(["README.md"]),
+    destination_files = glob(['README.md'])
+)
