@@ -28,3 +28,5 @@ jobs:
           custom_config: copy.bara.sky
           workflow: default
           copybara_options: --force --init-history
+        env:
+          GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
