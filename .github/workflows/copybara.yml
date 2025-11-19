@@ -10,6 +10,19 @@ jobs:
           fetch-depth: 0
           ssh-known-hosts: 'github.com'
           ssh-key: ${{ secrets.SSH_KEY }}
+      
+      - name: Update GitHub SSH key in runner's known_hosts
+        run: |
+          # Ensure the .ssh directory and known_hosts file exist.
+          mkdir -p /root/.ssh
+          touch /root/.ssh/known_hosts
+
+          # Remove any existing github.com entries from known_hosts.
+          ssh-keygen -f "/root/.ssh/known_hosts" -R "github.com"
+
+          # Add the current github.com SSH host keys.
+          # -H hashes the hostname in the known_hosts file.
+          ssh-keyscan -H github.com >> /root/.ssh/known_hosts
 
       - uses: olivr/copybara-action@v1.2.3
         with:
