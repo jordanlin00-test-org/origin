@@ -11,15 +11,6 @@ jobs:
           ssh-known-hosts: 'github.com'
           ssh-key: ${{ secrets.SSH_KEY }}
           
-      - name: set up ssh
-        run: | 
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          touch ~/.ssh/known_hosts
-          ssh-keygen -R github.com || true
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-        
       - uses: olivr/copybara-action@v1.2.3
         with:
           access_token: ${{ secrets.GH_TOKEN }}
@@ -30,5 +21,3 @@ jobs:
           custom_config: copy.bara.sky
           workflow: default
           copybara_options: --force --init-history
-        env:
-          GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
