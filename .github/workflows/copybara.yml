@@ -23,6 +23,7 @@ jobs:
         with:
           access_token: ${{ secrets.GH_TOKEN }}
           ssh_key: ${{ secrets.SSH_KEY }}
+          ssh_known_hosts: ${{ secrets.SSH_PRIVATE_KEY }}
           sot_repo: https://github.com/jordanlin00-test-org/origin
           destination_repo: git@github.com:jordanlin00-test-org/destination.git
           custom_config: copy.bara.sky
